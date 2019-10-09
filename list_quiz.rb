@@ -1,6 +1,6 @@
 def three_even?(list)
     i = 0
-    while i < list.size
+    while i < list.size - 2 # changed number of times the loop would run
         if list[i] % 2 == 0 && list[i + 1] % 2 == 0 && list[i + 2] % 2 == 0
             return true
         end
@@ -31,20 +31,21 @@ end
 
 def series_up(n)
     i = 0
-    size = n * (n + 1) / 2
-    while i < size
-        if size - (n - i) > 0
-            pattern_count += 1
+    list = []
+    # loops inside loops to make increasing pattern multiple times
+    (n-1).times do # number of patterns
+        while i < n # puts actually pattern staring from 1
+            list.push(1 + i)
+            puts list # use of puts here allows for the full output instead of only the last pattern of 1 to n
+            i += 1
         end
-        i += 1
     end
-    pattern_count.times do
-        puts (1 + n)
+    if list == [] # if n == 1 the loops don't activate and there in no output. This statement fixes that
+        puts 1
     end
-        
 end
 
-puts series_up(1) # [1]
-puts series_up(2) # [1, 1, 2]
-puts series_up(3) # [1, 1, 2, 1, 2, 3]
-puts series_up(4) # [1, 1, 2, 1, 2, 3, 1, 2, 3, 4]
+# series_up(1) # [1]
+# series_up(2) # [1, 1, 2]
+# series_up(3) # [1, 1, 2, 1, 2, 3]
+# series_up(4) # [1, 1, 2, 1, 2, 3, 1, 2, 3, 4]
